@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static "css/salepage.css" %}">
+ {% endblock %}
+{% load mezzanine_tags keyword_tags %}
+{% block meta_title %}Sales{% endblock %}
+{% block ajax_progress_load %}
+<div class="sale_bar">
+    <div class="sale_progress">
+
+    </div>
+
+</div>
+
+{% endblock %}
+{% block special_page_content %}
+<section class="flex-sect">
+  <div class="container-width">
+    <div class="flex-title">Flex is the new black
+    </div>
+<div class="flex-desc">With flexbox system you're able to build complex layouts easily and with free responsivity
+    </div>
+    <div class="cards">
+      {% for item in items %}
+
+      <div class="card">
+        <div class="card-header" style="background-image:url(http://127.0.0.1:8000{{ MEDIA_URL }}{{item.item_image}})"">
+        </div>
+        <div class="card-body">
+          <div class="card-title">{{item.item_name}}
+          </div>
+          <div class="card-sub-title">{{item.item_price}}
+          </div>
+          <div class="card-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+          </div>
+        </div>
+      </div>
+
+
+    {% endfor %}</div></section>
+
+
+
+
+
+{% endblock %}
