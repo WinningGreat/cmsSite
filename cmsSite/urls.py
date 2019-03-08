@@ -7,7 +7,9 @@ from django.views.i18n import set_language
 
 from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
-
+from rest_framework.routers import DefaultRouter
+from moderna.views import DigitalItemViewSet
+from rest_framework.routers import DefaultRouter
 # Uncomment to use blog as home page. See also urlpatterns section below.
 # from mezzanine.blog import views as blog_views
 
@@ -16,12 +18,17 @@ admin.autodiscover()
 # Add the urlpatterns for any custom Django applications here.
 # You can also change the ``home`` view to add your own functionality
 # to the project's homepage.
+digital_item_list = DigitalItemViewSet.as_view({'get':'list'})
+digital_item_detail = DigitalItemViewSet.as_view({'get':'retrieve','post':'create'})
+router = DefaultRouter()
+router.register(r'',DigitalItemViewSet)
 
 urlpatterns = i18n_patterns(
     # Change the admin prefix here to use an alternate URL for the
     # admin interface, which would be marginally more secure.
     url("^admin/", include(admin.site.urls)),
     url("^pagedown/", include(mezzanine_pagedown.urls)),
+    url("^products/ebooks/",include(router.urls))
 )
 
 if settings.USE_MODELTRANSLATION:

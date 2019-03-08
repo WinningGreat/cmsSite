@@ -243,6 +243,7 @@ if DJANGO_VERSION < (1, 9):
 ################
 
 INSTALLED_APPS = (
+    "rest_framework",
     "moderna",
     "mezzanine_pagedown",
     "django.contrib.admin",
